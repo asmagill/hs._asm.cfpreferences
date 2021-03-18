@@ -20,7 +20,7 @@
 
 
 static const char * const USERDATA_TAG = "hs._asm.cfpreferences" ; // used in warnings
-static int refTable = LUA_NOREF;
+static LSRefTable refTable = LUA_NOREF;
 
 #pragma mark - Support Functions and Classes
 
@@ -727,7 +727,7 @@ static luaL_Reg moduleLib[] = {
 
 int luaopen_hs__asm_cfpreferences_internal(lua_State *L) {
     LuaSkin *skin = [LuaSkin sharedWithState:L] ;
-    refTable = [skin registerLibrary:moduleLib metaFunctions:nil] ; // or module_metaLib
+    refTable = [skin registerLibrary:USERDATA_TAG functions:moduleLib metaFunctions:nil] ; // or module_metaLib
 
 //     push_preferencesKeys(L) ; lua_setfield(L, -2, "predefinedKeys") ;
 
